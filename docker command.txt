@@ -1,5 +1,5 @@
 BUILD
-docker build -t kubuntu-desktop .
+docker build --build-arg USER_NAME=XXXXX --build-arg USER_PASSWORD=XXXXX -t kubuntu-desktop .
 
 RUN
 docker run --rm -i -d -p 3389:3389 --name kubuntu-desktop kubuntu-desktop
