@@ -1,0 +1,8 @@
+BUILD
+docker build -t kubuntu-desktop .
+
+RUN
+docker run --rm -i -d -p 3389:3389 --name kubuntu-desktop kubuntu-desktop
+
+CLEAR ALL
+docker system prune -a
