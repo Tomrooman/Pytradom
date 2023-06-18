@@ -38,7 +38,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="/home/tom/python-trading-bot/env"
+VIRTUAL_ENV="/home/tom/Pytradom/env"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"
