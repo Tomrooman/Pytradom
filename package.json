@@ -1,0 +1,16 @@
+{
+  "name": "pytradom",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start:dev": "nodemon --exec wine python src/main.py",
+    "docker:start": "docker run --rm -i -d -p 3389:3389 -v /home/tom/Pytradom:/home/tom/Pytradom --name kubuntu-desktop kubuntu-desktop",
+    "docker:build": "docker build -f docker/Dockerfile --build-arg $(cat docker/user.settings.env | grep USER_NAME) --build-arg $(cat docker/user.settings.env | grep USER_PASSWORD) -t kubuntu-desktop .",
+    "docker:stop": "docker stop kubuntu-desktop"
+  },
+  "author": "Tom Rooman",
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
