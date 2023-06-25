@@ -27,6 +27,7 @@ RUN wget -O /etc/apt/keyrings/winehq-archive.key https://dl.winehq.org/wine-buil
 RUN wget -NP /etc/apt/sources.list.d/ https://dl.winehq.org/wine-builds/ubuntu/dists/lunar/winehq-lunar.sources
 RUN apt update
 RUN apt install -y --install-recommends winehq-stable winetricks
+COPY bot/requirements.txt /home/${USER_NAME}/
 COPY bot/python-3.10.10-amd64.exe /home/${USER_NAME}/
 COPY bot/setup.sh /home/${USER_NAME}/
 RUN chmod +x /home/${USER_NAME}/setup.sh

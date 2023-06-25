@@ -26,7 +26,7 @@ sudo rm python-3.10.10-amd64.exe
 echo '------------------------------------------------'
 echo '--------- Installing metatrader module ---------'
 echo '------------------------------------------------'
-wine pip install metatrader5
+wine pip install -r requirements.txt
 
 echo '-----------------------------------------------'
 echo '------------ Installing metatrader ------------'

@@ -1,52 +1,24 @@
 import json
 import os
-import MetaTrader5 as mt5
+import mt5_lib
+from types.bot_settings_type import BotSettings
 # import time
 
 
-def get_settings(file_name: str):
-    if (os.path.exists(os.path.join(os.path.dirname(__file__), file_name)) == False):
+def get_settings(file_name: str) -> BotSettings:
+    if (os.path.exists(path=os.path.join(os.path.dirname(p=__file__), file_name)) == False):
         raise ImportError('No {file_name} file found')
 
-    with open(os.path.join(os.path.dirname(__file__), file_name)) as f:
-        settings = json.load(f)
+    with open(file=os.path.join(os.path.dirname(p=__file__), file_name)) as f:
+        settings: BotSettings = json.load(fp=f)
         return settings
 
 
-def initialize_mt5(settings):
-    if not mt5.initialize(
-        path=settings["mt5"]["path"],
-            login=settings["mt5"]["login"],
-            password=settings["mt5"]["password"],
-            server=settings["mt5"]["server"],
-            timeout=settings["mt5"]["timeout"],
-            portable=settings["mt5"]["portable"]):
-        print("failed to initialize metatrader account, probably bad credentials, error code =",
-              mt5.last_error())
-        mt5.shutdown()
-        quit()
-
-
-def connect_to_mt5(settings):
-    authorized = mt5.login(
-        login=settings["mt5"]["login"],
-        password=settings["mt5"]["password"],
-        server=settings["mt5"]["server"],
-        timeout=settings["mt5"]["timeout"],
-        portable=settings["mt5"]["portable"]
-    )
-    if not authorized:
-        print("failed to connect to metatrader account, error code =",
-              mt5.last_error())
-        mt5.shutdown()
-        quit()
-
-
-def main():
-    settings = get_settings('bot.settings.json')
+def main() -> None:
+    settings: BotSettings = get_settings(file_name='bot.settings.json')
     print("Main function")
-    initialize_mt5(settings)
-    connect_to_mt5(settings)
+    mt5_lib.initialize_mt5(settings=settings)
+    mt5_lib.connect_to_mt5(settings=settings)
     print("End of main function")
 
 
