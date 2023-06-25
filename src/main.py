@@ -21,7 +21,7 @@ def initialize_mt5(settings):
             server=settings["mt5"]["server"],
             timeout=settings["mt5"]["timeout"],
             portable=settings["mt5"]["portable"]):
-        print("initialize() failed, probably bad credentials, error code =",
+        print("failed to initialize metatrader account, probably bad credentials, error code =",
               mt5.last_error())
         mt5.shutdown()
         quit()
